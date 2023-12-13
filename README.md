@@ -1,1 +1,1 @@
-# javascript-version
+# javascript-version 10
