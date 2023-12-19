@@ -21,6 +21,15 @@ const authThemeMask = computed(() => {
 })
 
 const isPasswordVisible = ref(false)
+const submitForm = () => {
+  axios.post('our api of create account', form.value)
+    .then(response => {
+      console.log('data is added successfully', response.data)
+    })
+    .catch(error => {
+      console.error('failed to send data', error)
+    })
+}
 </script>
 
 <template>
@@ -51,7 +60,7 @@ const isPasswordVisible = ref(false)
       </VCardText>
 
       <VCardText>
-        <VForm @submit.prevent="() => {}">
+        <VForm @submit.prevent="submitForm">
           <VRow>
             <!-- Username -->
             <VCol cols="12">

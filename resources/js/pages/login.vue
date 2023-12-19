@@ -6,6 +6,7 @@ import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png'
 import authV1MaskLight from '@images/pages/auth-v1-mask-light.png'
 import authV1Tree2 from '@images/pages/auth-v1-tree-2.png'
 import authV1Tree from '@images/pages/auth-v1-tree.png'
+import axios from 'axios'
 
 const form = ref({
   email: '',
@@ -20,6 +21,16 @@ const authThemeMask = computed(() => {
 })
 
 const isPasswordVisible = ref(false)
+// function to use our api for login
+const submitForm = () => {
+  axios.post('our api of login', form.value)
+    .then(response => {
+      console.log('data is added successfully', response.data)
+    })
+    .catch(error => {
+      console.error('failed to send data', error)
+    })
+}
 </script>
 
 <template>
@@ -50,7 +61,7 @@ const isPasswordVisible = ref(false)
       </VCardText>
 
       <VCardText>
-        <VForm @submit.prevent="() => {}">
+        <VForm @submit.prevent="submitForm">
           <VRow>
             <!-- email -->
             <VCol cols="12">
@@ -118,7 +129,6 @@ const isPasswordVisible = ref(false)
               <span class="mx-4">or</span>
               <VDivider />
             </VCol>
-
             <!-- auth providers -->
             <VCol
               cols="12"
